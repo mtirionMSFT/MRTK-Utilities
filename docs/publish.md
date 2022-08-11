@@ -2,13 +2,9 @@
 
 This document describes the *manual process* of creating the Application Package for deploying it to a HoloLens.
 
-> [!NOTE]
->
-> Ideally this should be done fully automatic in a pipeline, but setting this up requires the use of Unity Server with the appropriate license and quite some configuration to implement. This can be done in a later stage.
-
 As an overview, the steps to follow are:
 
-1. Clone the repository, open Merck.ALE.HoloApp in Unity and configure the settings.
+1. Clone the repository, open HoloLens application in Unity and configure the settings.
 2. From the Build Settings build the Visual Studio solution.
 3. Open the Visual Studio solution.
 4. Create the application package from Visual Studio using a wizard.
@@ -16,23 +12,15 @@ As an overview, the steps to follow are:
 
 Below a detailed description of the steps can be found.
 
-## Step 1: clone the repository, open Merck.ALE.HoloApp in Unity and configure the settings
+## Step 1: clone the repository, open the HoloLens Application in Unity
 
-Let's start at the complete start of the process: cloning the repo. Once you have done that, open the **src\Merck.Ale.HoloApp** with Unity. For more information about the tool versions to use, see [Getting Started](../../../docs/getting-started/README.md). For more information on opening the project in Unity and possible issues, see [the main README of the HoloApp](../README.md). Make sure you selected **Universal Windows Platform** as platform in **Build Settings**.
+Let's start at the complete start of the process: cloning the repo. Make sure you selected **Universal Windows Platform** as platform in **Build Settings**.
 
 ![Build settings](.attachments/build-app-unity.png)
 
-You also have to configure the settings for the application. The configuration is expected in **src\Merck.ALE.HoloApp\Assets\StreamingAssets\Resources\appsettings.json**. As we don't store secrets in the repo, this file in .gitignore.
-
-> [!IMPORANT]
->
-> Make sure you add the **appsettings.json** with the required settings in the project **before** you start building anything. If you don't do that, the application package will be created and you can run the application. But a big error dialog will appear telling you that you didn't configure the app.
-
-For more information on the settings, see [Configure the HoloLens Application](configure.md).
-
 ## Step 2: Build the Visual Studio solution from Unity
 
-On the **Build Settings** dialog click the **Build** button to build the Visual Studio solution. If this is the first time you're doing this, a folder picker dialog pops up in the *src\Merck.ALE.HoloApp* folder. Best practice is to create a sub-folder called **build** and select it.
+On the **Build Settings** dialog click the **Build** button to build the Visual Studio solution. If this is the first time you're doing this, a folder picker dialog pops up in the project folder. Best practice is to create a sub-folder called **build** and select it.
 
 > [!NOTE]
 >
@@ -94,9 +82,7 @@ Click **Next** to go to the next step.
 
 ### Select signing method
 
-This step is about signing the package. By default the standard development certificate is selected that was created and stored in the repo (*src\Merck.ALE.HoloApp\Assets\WSATestCertificate.pfx*).
-
-More information about options to sign the package can be found in the documents [Sign an app package using SignTool - MSIX | Microsoft Docs](https://docs.microsoft.com/nl-nl/windows/msix/package/sign-app-package-using-signtool) and [Create a certificate for package signing - MSIX | Microsoft Docs](https://docs.microsoft.com/nl-nl/windows/msix/package/create-certificate-package-signing).
+This step is about signing the package. More information about options to sign the package can be found in the documents [Sign an app package using SignTool - MSIX | Microsoft Docs](https://docs.microsoft.com/nl-nl/windows/msix/package/sign-app-package-using-signtool) and [Create a certificate for package signing - MSIX | Microsoft Docs](https://docs.microsoft.com/nl-nl/windows/msix/package/create-certificate-package-signing).
 
 ![Package signing](.attachments/build-app-vs-create-package-2-signing.png)
 

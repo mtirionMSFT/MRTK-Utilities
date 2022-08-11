@@ -1,27 +1,31 @@
-# HoloLens Application - Merck Lab Assistant
+# MRTK Utilities
 
-This is the HoloLens Application used in the Merck AI Lab Engine project.
+This is the Unity based HoloLens 2 Application using MRTK 2. This application used to demonstrate MRTK Utilities and basic setup of a project.
+
+## Prerequisites
+
+To work with this repo you need these tools:
+
+* Windows 10 or Windows 11 (make sure you update to the latest version)
+* [Visual Studio 2019 or 2022](https://visualstudio.microsoft.com/vs/)
+  Make sure to select *Universal Windows Platform development*,  *Game development with Unity* and *Game development with C++*.
+* [Unity 2020.3 LTS](https://unity3d.com/get-unity/download)
+  Make sure to select *Universal Windows Platform Build Support, Windows Build Support (IL2CPP)* to develop for HoloLens.
+* [Microsoft Mixed Reality Toolkit (MRTK) v2.8](https://github.com/microsoft/MixedRealityToolkit-Unity/releases/latest)
+  The solution contains the correct MRTK version in the repo. Configuration is done using the [Mixed Reality Feature Tool](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool).
 
 ## Setup
 
-Make sure you have setup your development machine with the required software as described in the [Getting Started documentation](..\..\docs\getting-started\readme.md).
 When you retrieve this project for the first time from the repo, set it up with these steps:
 
-1. Open the project with **Unity 2020.3.33f1 (LTS)**
+1. Open the project with **Unity 2020.3 (LTS)**
 
-   > [!NOTE]
-   >
-   > You might get errors on first time load where Unity suggests to open in Safe Mode. **Ignore that message** and press **Continue**. You need to switch the platform (explained below) for NuGet to kick in and download the Merck.Ale.Domain library. Then it will compile.
 2. In the Build Settings (menu open File > Build Settings ...)
 3. Under Platform select **Universal Windows Platform**
 4. Use the settings as shown in the image below:
 ![Unity Build Settings](unity-build-settings.png)
 5. Click **Switch Platform**
 6. In the **Project** pane under **Assets\Scenes** double click **Main** to open the main scene.
-
-## Configure
-
-Create the file **Assets\StreamingAssets\Resources\appsettings.json**. for details about this file, see [Configure the HoloLens Application](./docs/configure.md). If you haven't set these secrets, the `ApplicationManager` will show an error that configuration is required. Also the authentication and calling into the backend won't work because of this.
 
 ## Build
 
@@ -37,37 +41,3 @@ You can deploy to **Device** when attached to USB or to **Remote** over WIFI. If
 
 For more information (including setting up your HoloLens for side loading) see [Using Visual Studio to deploy and debug - Mixed Reality | Microsoft Docs](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/using-visual-studio?tabs=hl2)
 
-## Security Configuration
-
-The redirect url that must be registered for the LabAssistant.HoloApp in the client app registration is: **ms-appx-web://microsoft.aad.brokerplugin/S-1-15-2-1369400529-3688795706-185729123-57922394-1228485375-1599191277-1070913205** (10-8-2022).
-
-## Patch MRTK Foundation Package
-
-Because of conflicting namespaces of UnityEngine.Graphics and Microsoft.Graphics, we decided to patch the included MRTK package to use to correct full-qualified namespace to solve those issues. For this purpose we extracted **Packages\MixedReality\com.microsoft.mixedreality.toolkit.foundation-2.7.3.tgz** in our repo (using Windows Subsystem for Linux):
-
-```bash
-tar -xvzf com.microsoft.mixedreality.toolkit.foundation-2.7.3.tgz
-```
-
-The contents is unpacked in the **./package** folder. Then we made these code changes:
-
-* Core\Utilities\Lines\Renderers\MeshLineRenderer.cs
-
-  * Line 150: Change **Graphics.** to **UnityEngine.Graphics**
-
-* SDK\Features\UX\Scripts\Pointers\SpherePointerGrabPoint.cs
-
-  * Line 44: Change **Graphics.** to **UnityEngine.Graphics**
-
-* Services\DiagnosticsSystem\MixedRealityToolkitVisualProfiler.cs
-
-  * Line 396: Change **Graphics.** to **UnityEngine.Graphics
-  * Line 404: Change **Graphics.** to **UnityEngine.Graphics**
-
-After these changes, we deleted the existing package and re-packaged the changed ./package folder to the foundation package with this command (using Windows Subsystem for Linux):
-
-```bash
-tar -cvzf com.microsoft.mixedreality.toolkit.foundation-2.7.3.tgz package
-```
-
-After this is done, the ./package folder should be deleted and not be part of the repo!
