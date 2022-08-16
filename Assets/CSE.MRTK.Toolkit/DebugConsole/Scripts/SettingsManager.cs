@@ -37,11 +37,12 @@ namespace CSE.MRTK.Toolkit.DebugConsole
         public bool OnlyLogWhenEnabled => _onlyLogWhenEnabled;
 
         /// <summary>
-        /// Initialization of the settings manager.
+        /// Initialize when enabled.
         /// </summary>
-        public void Initialize(bool onlyLogWhenEnabled)
+        private void OnEnable()
         {
-            _onlyLogWhenEnabled = onlyLogWhenEnabled;
+            MainController controller = GetComponent<MainController>();
+            _onlyLogWhenEnabled = controller.OnlyLogWhenEnabled;
 #if WINDOWS_UWP
             _statePath = Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, _stateFileName);
 #else

@@ -45,8 +45,20 @@ namespace CSE.MRTK.Toolkit.DebugConsole
         {
             if (Manager.Settings.SaveToFile != _interactable.IsToggled)
             {
+                if (_interactable.IsToggled)
+                {
+                    // show this in the message, not in the log
+                    Controller.WriteMessage($"*** START SAVING TO FILE FROM HERE ***");
+                }
+
                 Manager.Settings.SaveToFile = _interactable.IsToggled;
                 Manager.SaveSettings();
+
+                if (!_interactable.IsToggled)
+                {
+                    // show this in the message, not in the log
+                    Controller.WriteMessage($"*** SAVING TO FILE STOPPED HERE ***");
+                }
             }
         }
     }

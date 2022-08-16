@@ -1,3 +1,4 @@
+using Microsoft.MixedReality.Toolkit.UI;
 using System.IO;
 using UnityEngine;
 #if WINDOWS_UWP
@@ -17,8 +18,13 @@ namespace CSE.MRTK.Toolkit.DebugConsole
         private const string LOG_FILENAME = "log.txt";
 
         [SerializeField]
+        [Tooltip("Indicate if you want to the console on startup.")]
+        private bool _showOnStartup;
+
+        [SerializeField]
         [Tooltip("Indicate if you want to catch all logs, or only when the prefab is enabled.")]
         private bool _onlyLogWhenEnabled;
+        public bool OnlyLogWhenEnabled => _onlyLogWhenEnabled;
 
         [SerializeField]
         [Tooltip("Indicate if you want to add the stack trace on errors.")]
@@ -45,7 +51,7 @@ namespace CSE.MRTK.Toolkit.DebugConsole
         /// Gets the settings manager.
         /// </summary>
         private SettingsManager _manager;
-        private UIController _uiController;
+        private FollowMeToggle _dialogUI;
 
         private string _logPath;
 
@@ -58,18 +64,12 @@ namespace CSE.MRTK.Toolkit.DebugConsole
         private void Start()
         {
             _manager = GetComponentInChildren<SettingsManager>();
-            _manager.Initialize(_onlyLogWhenEnabled);
-
-            _uiController = GetComponentInChildren<UIController>(true);
-
-            if (_manager.Settings.ShowAtStartup)
-            {
-                _uiController.gameObject.SetActive(true);
-            }
+            _dialogUI = GetComponentInChildren<FollowMeToggle>(true);
 
 #if WINDOWS_UWP
             _logPath = ApplicationData.Current.LocalCacheFolder.Path;
 #else
+            // %userprofile%\AppData\LocalLow\DefaultCompany\MRTK-Utilities
             _logPath = Application.persistentDataPath;
 #endif
             _logPath = Path.Combine(_logPath, _logFileName ?? LOG_FILENAME);
@@ -79,8 +79,16 @@ namespace CSE.MRTK.Toolkit.DebugConsole
                 File.Delete(_logPath);
             }
 
-            // always want to catch logs
-            Application.logMessageReceived += Application_logMessageReceived;
+            // if indicated in editor or settings, show console on startup
+            if (_showOnStartup || _manager.Settings.ShowAtStartup)
+            {
+                _dialogUI?.gameObject.SetActive(true);
+            }
+
+            if (!_onlyLogWhenEnabled || _showOnStartup || _manager.Settings.ShowAtStartup)
+            {
+                Application.logMessageReceived += Application_logMessageReceived;
+            }
         }
 
         /// <summary>
@@ -97,7 +105,7 @@ namespace CSE.MRTK.Toolkit.DebugConsole
                 string msg = message;
                 if (_showStackTraceOnError && (type == LogType.Exception || type == LogType.Error))
                 {
-                    msg += $"\n{stackTrace}";
+                    msg += $"\n*** stack trace ***\n{stackTrace}\n*** end stack trace ***";
                 }
                 WriteMessage(msg);
             }
@@ -109,9 +117,12 @@ namespace CSE.MRTK.Toolkit.DebugConsole
         /// <param name="message">Message.</param>
         public void WriteMessage(string message)
         {
-            OnMessage?.Invoke(message);
+            if (_dialogUI.gameObject.activeSelf)
+            {
+                OnMessage?.Invoke(message);
+            }
             if (_manager.Settings.SaveToFile &&
-                (!_onlyLogWhenEnabled || _uiController.gameObject.activeSelf))
+                (!_onlyLogWhenEnabled || _dialogUI.gameObject.activeSelf))
             {
                 // only save if 1) configured to do so 2) only when enabled & ui active OR always log 
                 File.AppendAllText(_logPath, $"{message}\n");
@@ -123,13 +134,23 @@ namespace CSE.MRTK.Toolkit.DebugConsole
         /// </summary>
         public void ShowConsole()
         {
-            _uiController.gameObject.SetActive(true);
-            if (File.Exists(_logPath))
-            {
-                // if log exists, read it and set as starting text
-                string log = File.ReadAllText(_logPath);
-                OnMessage?.Invoke(log);
-            }
+            _dialogUI.gameObject.SetActive(true);
+
+            // save to state that we're active
+            _manager.Settings.ShowAtStartup = true;
+            _manager.SaveSettings();
+        }
+
+        /// <summary>
+        /// Closing the debug console.
+        /// </summary>
+        public void OnClose()
+        {
+            _dialogUI.gameObject.SetActive(false);
+
+            // save to state that we're not active anymore.
+            _manager.Settings.ShowAtStartup = false;
+            _manager.SaveSettings();
         }
 
         /// <summary>

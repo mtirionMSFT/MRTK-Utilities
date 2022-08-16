@@ -6898,8 +6898,8 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7254495411729802149}
-        m_TargetAssemblyTypeName: CSE.MRTK.Toolkit.DebugConsole.UIController, Assembly-CSharp
+      - m_Target: {fileID: 7890467505168750964}
+        m_TargetAssemblyTypeName: CSE.MRTK.Toolkit.DebugConsole.MainController, Assembly-CSharp
         m_MethodName: OnClose
         m_Mode: 1
         m_Arguments:
@@ -8629,7 +8629,6 @@ GameObject:
   - component: {fileID: 8766192447920103764}
   - component: {fileID: 8944082749119470631}
   - component: {fileID: 8372520431879296824}
-  - component: {fileID: 7254495411729802149}
   m_Layer: 0
   m_Name: DebugConsolePanel
   m_TagString: Untagged
@@ -8669,6 +8668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualizationObject: {fileID: 2639432791614170568}
   interactableObject: {fileID: 0}
+  buttonBehavior: 0
   autoFollowAtDistance: 0
   autoFollowDistance: 2
   autoFollowTransformTarget: {fileID: 0}
@@ -8688,7 +8688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackedTargetType: 0
-  trackedHandness: 3
+  trackedHandedness: 3
   trackedHandJoint: 2
   transformOverride: {fileID: 0}
   additionalOffset: {x: 0, y: 0, z: 0}
@@ -8864,6 +8864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 3
   proximityType: 3
+  executionOrder: 0
   scaleMinimum: 0.3
   scaleMaximum: 5
   relativeToInitialState: 1
@@ -8881,18 +8882,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTetherWhenManipulating: 0
   IsBoundsHandles: 0
---- !u!114 &7254495411729802149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7254495411729802147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f383f5434ab9934c99e4bc9f20dd184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7254495412229575607
 GameObject:
   m_ObjectHideFlags: 0
@@ -9342,6 +9331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 1
   proximityType: 3
+  executionOrder: 0
   faceAway: 1
 --- !u!114 &925718960439838396
 MonoBehaviour:
@@ -9357,6 +9347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handType: 3
   proximityType: 3
+  executionOrder: 0
   constraintOnRotation: 5
   useLocalSpaceForConstraint: 0
 --- !u!114 &6383346458480956045
@@ -9505,6 +9496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b402a00b7c30904f9c67c66580fe725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showOnStartup: 0
   _onlyLogWhenEnabled: 0
   _showStackTraceOnError: 1
   _logFileName: log.txt

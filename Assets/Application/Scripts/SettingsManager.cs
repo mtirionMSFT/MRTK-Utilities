@@ -34,7 +34,7 @@ public class SettingsManager : MonoBehaviour
             Debug.Log($"Retrieving settings from {path}");
             if (!File.Exists(path))
             {
-                Debug.LogError($"SettingsManager.LoadSettings ERROR: Make sure settings are provided in `{path}`. See README for details on the settings.");
+                Debug.Log($"SettingsManager.LoadSettings ERROR: Make sure settings are provided in `{path}`. See README for details on the settings.");
                 return false;
             }
 
