@@ -49,8 +49,8 @@ public class SettingsManager : MonoBehaviour
             }
 
             // log only first part of the secrets
-            Debug.Log($"ClientId: {Settings.ClientId.Substring(0, 10)}***");
-            Debug.Log($"TenantId: {Settings.TenantId.Substring(0, 10)}***");
+            Debug.Log($"ClientId: {Settings.ClientId.Substring(0, 4)}***");
+            Debug.Log($"TenantId: {Settings.TenantId.Substring(0, 4)}***");
             Debug.Log($"Scopes: {Settings.Scopes.Substring(0, 10)}***");
             Debug.Log($"Resource: {Settings.Resource.Substring(0, 10)}***");
 

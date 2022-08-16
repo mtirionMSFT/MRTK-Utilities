@@ -154,7 +154,7 @@ public class AuthenticationManager : MonoBehaviour
             {
                 _objectId = result.Account.Username;
             }
-            Debug.Log($"Object ID: {_objectId}");
+            Debug.Log($"Object ID: {_objectId.Substring(0, 4)}***");
 
             // we'll try to get a real name from the token
             System.Security.Claims.Claim claim = result.ClaimsPrincipal.FindFirst("name");
