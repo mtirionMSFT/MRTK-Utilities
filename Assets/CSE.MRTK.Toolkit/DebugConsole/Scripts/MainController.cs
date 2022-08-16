@@ -11,6 +11,7 @@ namespace CSE.MRTK.Toolkit.DebugConsole
     /// Here we catch debug messages and pass them along the
     /// rest of the prefab through events.
     /// </summary>
+    [RequireComponent(typeof(SettingsManager))]
     public class MainController : MonoBehaviour
     {
         private const string LOG_FILENAME = "log.txt";
