@@ -29,7 +29,7 @@ namespace MRTKUtilities.Application
         {
             // always initialize settings
             _settings = new AppSettings();
-            string path = Path.Combine(Application.streamingAssetsPath, "Resources", "appsettings.json");
+            string path = Path.Combine(Application.streamingAssetsPath, "appsettings.json");
 
             try
             {
