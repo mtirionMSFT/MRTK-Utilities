@@ -1,18 +1,18 @@
-using Microsoft.MixedReality.Toolkit.UI;
-using System.IO;
-using UnityEngine;
-#if WINDOWS_UWP
-using Windows.Storage;
-#endif
-
 namespace CSE.MRTK.Toolkit.DebugConsole
 {
+    using Microsoft.MixedReality.Toolkit.UI;
+    using System.IO;
+    using UnityEngine;
+#if WINDOWS_UWP
+    using Windows.Storage;
+#endif
+
     /// <summary>
     /// This is the controller for the DebugConsole prefab.
     /// Here we catch debug messages and pass them along the
     /// rest of the prefab through events.
     /// </summary>
-    [RequireComponent(typeof(SettingsManager))]
+    [RequireComponent(typeof(DebugConsole.SettingsManager))]
     public class MainController : MonoBehaviour
     {
         private const string LOG_FILENAME = "log.txt";
