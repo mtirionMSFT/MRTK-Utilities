@@ -1,7 +1,5 @@
 ﻿using System;
 
-#pragma warning disable CA1051 // Do not declare visible instance fields
-#pragma warning disable SA1401 // Fields should be private
 /// <summary>
 /// Model class for application settings.
 /// </summary>
