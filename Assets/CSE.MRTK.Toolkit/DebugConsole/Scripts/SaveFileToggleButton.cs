@@ -1,8 +1,8 @@
-using Microsoft.MixedReality.Toolkit.UI;
-using UnityEngine;
-
 namespace CSE.MRTK.Toolkit.DebugConsole
 {
+    using Microsoft.MixedReality.Toolkit.UI;
+    using UnityEngine;
+
     /// <summary>
     /// Toggle button handler class for enable/disable saving messages to disk.
     /// </summary>

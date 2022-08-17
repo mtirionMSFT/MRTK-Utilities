@@ -1,7 +1,7 @@
-using UnityEngine;
-
 namespace CSE.MRTK.Toolkit.DebugConsole
 {
+    using UnityEngine;
+
     /// <summary>
     /// Class implementing subscribing to <see cref="UIController"/> 
     /// and <see cref="SettingsManager"/> events.

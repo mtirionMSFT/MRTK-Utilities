@@ -1,7 +1,8 @@
-using UnityEngine;
-
 namespace CSE.MRTK.Toolkit.DebugConsole
 {
+    using MRTKUtilities.Application;
+    using UnityEngine;
+
     /// <summary>
     /// Log to the <see cref="TMPro.TextMeshProUGUI"/> script to show the message in the UI.
     /// </summary>

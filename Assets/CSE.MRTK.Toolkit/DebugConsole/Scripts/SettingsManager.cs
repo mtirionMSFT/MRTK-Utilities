@@ -1,17 +1,17 @@
-using System;
-using System.IO;
-using Newtonsoft.Json;
-using UnityEngine;
-#if WINDOWS_UWP
-using Windows.Storage;
-#endif
-
 namespace CSE.MRTK.Toolkit.DebugConsole
 {
+    using System;
+    using System.IO;
+    using Newtonsoft.Json;
+    using UnityEngine;
+#if WINDOWS_UWP
+    using Windows.Storage;
+#endif
+
     /// <summary>
     /// Manager of the settings that are stored on and restored from disk.
     /// </summary>
-    [RequireComponent(typeof(MainController))]
+    [RequireComponent(typeof(DebugConsole.MainController))]
     public class SettingsManager : MonoBehaviour
     {
         [SerializeField]
