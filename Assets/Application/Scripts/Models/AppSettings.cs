@@ -34,16 +34,6 @@ public class AppSettings
     public string BaseEndPointUrl;
 
     /// <summary>
-    /// Gets or sets the API key for the Azure Cognitive Speech Service.
-    /// </summary>
-    public string SpeechServiceApiKey;
-
-    /// <summary>
-    /// Gets or sets the region for the Azure Cognitive Speech Service.
-    /// </summary>
-    public string SpeechServiceRegion;
-
-    /// <summary>
     /// Return if the app settings are valid for use in the application.
     /// We just check if the settings are not empty. Errors can occur
     /// later if the settings are not correct (wrong Client ID for instance).
@@ -55,9 +45,7 @@ public class AppSettings
             !string.IsNullOrEmpty(TenantId) &&
             !string.IsNullOrEmpty(Scopes) &&
             !string.IsNullOrEmpty(Resource) &&
-            !string.IsNullOrEmpty(BaseEndPointUrl) &&
-            !string.IsNullOrEmpty(SpeechServiceApiKey) &&
-            !string.IsNullOrEmpty(SpeechServiceRegion);
+            !string.IsNullOrEmpty(BaseEndPointUrl);
     }
 }
 #pragma warning restore SA1401 // Fields should be private
