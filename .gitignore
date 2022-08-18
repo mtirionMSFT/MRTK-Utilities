@@ -27,8 +27,8 @@
 /[Aa]ssets/Plugins/Editor/JetBrains*
 
 ## APPLICATION SPECIFIC. IGNORE appsettings
-/Assets/StreamingAssets/Resources/appsettings.json
-/Assets/StreamingAssets/Resources/appsettings.json.meta
+/Assets/StreamingAssets/appsettings.json
+/Assets/StreamingAssets/appsettings.json.meta
 
 # Visual Studio cache directory
 .vs/

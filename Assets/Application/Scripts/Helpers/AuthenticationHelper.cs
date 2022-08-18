@@ -8,11 +8,12 @@ namespace MRTKUtilities.Application
     using System.Threading.Tasks;
     using Microsoft.Identity.Client;
     using UnityEngine;
+
 #if WINDOWS_UWP
-using Windows.Security.Authentication.Web;
-using Windows.Security.Authentication.Web.Core;
-using Windows.Security.Credentials;
-using Windows.Security.Credentials.UI;
+    using Windows.Security.Authentication.Web;
+    using Windows.Security.Authentication.Web.Core;
+    using Windows.Security.Credentials;
+    using Windows.Security.Credentials.UI;
 #endif
 
     /// <summary>
@@ -56,10 +57,10 @@ using Windows.Security.Credentials.UI;
         {
             string url = "This can only be retrieved as app. Deploy the app to your HoloLens.";
 #if WINDOWS_UWP
-        url = string.Format(
-            CultureInfo.InvariantCulture,
-            WebBrokerReturnUrlTemplate,
-            WebAuthenticationBroker.GetCurrentApplicationCallbackUri().Host.ToUpper(CultureInfo.InvariantCulture));
+url = string.Format(
+    CultureInfo.InvariantCulture,
+    WebBrokerReturnUrlTemplate,
+    WebAuthenticationBroker.GetCurrentApplicationCallbackUri().Host.ToUpper(CultureInfo.InvariantCulture));
 #endif
             return url;
         }
