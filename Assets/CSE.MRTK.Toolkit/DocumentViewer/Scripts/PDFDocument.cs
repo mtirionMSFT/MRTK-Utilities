@@ -70,9 +70,9 @@ namespace CSE.MRTK.Toolkit.DocumentViewer
             }
 #else
             // FOR DEMO PURPOSES ONLY
-            // We have 2 fake pages to show when Paroxe is not installed
+            // We have 4 demo pages to show when Paroxe is not installed
             _isValid = true;
-            _pageCount = 2;
+            _pageCount = 4;
 #endif
         }
 
@@ -106,7 +106,7 @@ namespace CSE.MRTK.Toolkit.DocumentViewer
             }
 #else
             // FOR DEMO PURPOSES
-            // If Paroxe is not installed, we have 2 image pages to render
+            // If Paroxe is not installed, we have 4 image pages to render
             string imageFileName = $"PdfDemoPage{page}.png";
             Stream fileStream = File.OpenRead(Path.Combine(Application.streamingAssetsPath, imageFileName));
             byte[] content;
