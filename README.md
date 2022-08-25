@@ -1,5 +1,6 @@
 # MRTK Utilities
 
+[comment]: # (comment)
 This is the Unity based HoloLens 2 Application using MRTK 2. This application used to demonstrate MRTK Utilities and basic setup of a project.
 
 ## Prerequisites
