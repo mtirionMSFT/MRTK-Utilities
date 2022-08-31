@@ -1,7 +1,22 @@
 # MRTK Utilities
 
-[comment]: # (comment)
-This is the Unity based HoloLens 2 Application using MRTK 2. This application used to demonstrate MRTK Utilities and basic setup of a project.
+This is the Unity based HoloLens 2 Application using MRTK 2. This application used to demonstrate MRTK Utilities and basic setup of a project. The implementation is based on learnings from a project a Microsoft CSE team I was part of did for an enterprise customer. There is a series of blogposts that explain more about the learnings contained in this repo:
+
+An overview of the posts can be found here: [Learnings from developing a HoloLens Application - Martin Tirion - Medium](https://mtirion.medium.com/learnings-from-developing-a-hololens-application-c0c9d38730fc). The topics we covered in this sharing are:
+
+- [Setting up a Unity-based application for HoloLens with MRTK | by Martin Tirion | Aug, 2022 | Medium](https://mtirion.medium.com/setting-up-a-unity-based-application-for-hololens-with-mrtk-6d079aff47a6)
+- [Adding Application Settings to a Unity-based HoloLens Application | by Martin Tirion | Aug, 2022 | Medium](https://mtirion.medium.com/adding-application-settings-to-a-unity-based-hololens-application-c9632fb52c5a)
+- [Authenticate a HoloLens Application to the Azure AD. | by Martin Tirion | Aug, 2022 | Medium](https://mtirion.medium.com/authenticate-a-hololens-application-to-the-azure-ad-ad551fbb8440)
+- [A Ready To Use Debug Console for your HoloLens Application | by Martin Tirion | Aug, 2022 | Medium](https://mtirion.medium.com/a-ready-to-use-debug-console-for-you-hololens-application-6b9913d93377)
+- [Creating a PDF Document Viewer in a HoloLens Application | by Martin Tirion | Aug, 2022 | Medium](https://mtirion.medium.com/creating-a-pdf-document-viewer-in-a-hololens-application-fad0f1399e27)
+
+## Unity Packages
+
+In the folder [CSE.MRTK.Toolkit.Packages](./CSE.MRTK.Toolkit.Packages) these Unity packages are made available:
+
+* [Application base](./CSE.MRTK.Toolkit.Packages/cse.mrtk.toolkit.application.base.unitypackage) - This provides an **Application** hierarchy as starting point for the structure of an Unity application using MRTK for HoloLens. In contains some basic classes as well on setting, authentication and more. For more information see [Setting up a Unity-based application for HoloLens with MRTK ](https://mtirion.medium.com/setting-up-a-unity-based-application-for-hololens-with-mrtk-6d079aff47a6), [Adding Application Settings to a Unity-based HoloLens Application](https://mtirion.medium.com/adding-application-settings-to-a-unity-based-hololens-application-c9632fb52c5a) and [Authenticate a HoloLens Application to the Azure AD](https://mtirion.medium.com/authenticate-a-hololens-application-to-the-azure-ad-ad551fbb8440)
+* [Debug Console](./CSE.MRTK.Toolkit.Packages/cse.mrtk.toolkit.debugconsole.unitypackage) - A **debug console** prefab using MRTK to show debug messages at runtime. You can also save the messages to a file. For more information see [A Ready To Use Debug Console for your HoloLens Application](https://mtirion.medium.com/a-ready-to-use-debug-console-for-you-hololens-application-6b9913d93377).
+* [Document Viewer](./CSE.MRTK.Toolkit.Packages/cse.mrtk.toolkit.documentviewer.unitypackage) - A **document viewer** prefab using MRTK and Paroxe (not included) to show PDF documents. For more information see [Creating a PDF Document Viewer in a HoloLens Application](https://mtirion.medium.com/creating-a-pdf-document-viewer-in-a-hololens-application-fad0f1399e27).
 
 ## Prerequisites
 
