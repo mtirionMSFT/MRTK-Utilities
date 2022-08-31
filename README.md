@@ -57,3 +57,6 @@ You can deploy to **Device** when attached to USB or to **Remote** over WIFI. If
 
 For more information (including setting up your HoloLens for side loading) see [Using Visual Studio to deploy and debug - Mixed Reality | Microsoft Docs](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/using-visual-studio?tabs=hl2)
 
+## Package
+
+For instructions how to package the app to deploy to a HoloLens, see the article [Creating the App Package to publish](./docs/publish.md).
